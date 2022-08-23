@@ -1,7 +1,10 @@
 from importlib.resources import contents
 from django.db import models
 from django.urls import reverse
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+
+from users.models import User
+
 
 class MainAnimals(models.Model):
     """то как будут отброжаться новостнные новости и все посты и главные новости"""
@@ -28,7 +31,7 @@ class MainAnimals(models.Model):
         verbose_name='Опубликовать'
     )
     potho = models.ImageField(
-        upload_to ='photos/%Y/%m/%d/', 
+        upload_to='photos/%Y/%m/%d/',
         null=True, 
         blank=True, 
         verbose_name='Фото'
@@ -42,7 +45,6 @@ class MainAnimals(models.Model):
     author = models.ForeignKey(
         User, 
         on_delete=models.PROTECT,
-        related_name='blog_posts', 
         verbose_name='Автор', )
     category = models.ForeignKey('Category', on_delete=models.PROTECT)
 

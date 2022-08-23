@@ -2,6 +2,7 @@ from pyexpat import model
 from statistics import mode
 from django.db import models
 
+
 class FindHome(models.Model):
     ANIMAL_CHOICES = (
         ('CAT', 'Котик'),
@@ -113,7 +114,7 @@ class FindHome(models.Model):
 
 
 class Helps_of_animals(models.Model):
-    TYPE_CHOICES=(
+    TYPE_CHOICES = (
         ('shelter', 'Ищит дом'),
         ('funds_for_treatment', 'Временная передержка'),
         ('temporary_overexposure', 'Требуеться лечение')
@@ -121,9 +122,9 @@ class Helps_of_animals(models.Model):
     title = models.CharField(
         max_length=40, 
         choices=TYPE_CHOICES,
-        verbose_name= 'Тип помощи'
+        verbose_name='Тип помощи'
     )
-    time_assistance=models.CharField(
+    time_assistance = models.CharField(
          max_length=240
     )
     class Meta:
