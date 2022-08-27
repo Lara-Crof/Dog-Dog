@@ -2,8 +2,7 @@ version: '3.9'
 
 services:
   app:
-    build:
-      context: .
+    image: dog-dog
     ports:
       - "8000:8000"
     working_dir: "/DOG-DOG/good_heartst_project"
@@ -12,9 +11,9 @@ services:
       python3 manage.py migrate &&
       python3 manage.py runserver 0.0.0.0:8000"
     environment:
-      - DB_HOST=db
-      - DB_NAME=devdb
-      - DB_USER=devuser
+      - DB_HOST=postgres
+      - DB_NAME=postgres
+      - DB_USER=DOG
       - DB_PASS=changename
     depends_on:
     - db
@@ -24,12 +23,8 @@ services:
     volumes:
       - dev-db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=devdb
-      - POSTGRES_USER=devuser
-      - POSTGRES_PASSWORD=changename
-  
-
-
-
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    ports:
+      - "5432:5432"
 volumes:
   dev-db-data:
