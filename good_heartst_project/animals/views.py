@@ -33,7 +33,7 @@ class CategoryList(ListView):
         return context
 
     def get_queryset(self):
-        return MainAnimals.objects.filter(category_id = self.kwargs['category_id'], is_publish=True)
+        return MainAnimals.objects.filter(category_id=self.kwargs['category_id'], is_publish=True)
 
 
 class AnimalPostDetail(DetailView):
@@ -41,6 +41,7 @@ class AnimalPostDetail(DetailView):
     template_name = 'animals/detail_post.html'
     context_object_name = 'ani'
     slug_url_kwarg = 'animals_slug'
+
 
 class CreatView(CreateView):
     form_class = PostForm 

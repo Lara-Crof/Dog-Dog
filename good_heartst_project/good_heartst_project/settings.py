@@ -2,21 +2,13 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-@j2f_qww_)4#0cf@#jp64ty6+&v3qhyp0w_++a4ihz1kc7&a18'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -27,9 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'animals',
-    'findhouse',
-    'veterinaris',
+    'animals.apps.AnimalsConfig',
+    'findhouse.apps.FindhouseConfig',
+    'users.apps.UserConfig',
     'sorl.thumbnail',
 ]
 
@@ -69,8 +61,12 @@ WSGI_APPLICATION = 'good_heartst_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": "postgres",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost", # set in docker-compose.yml
+        "PORT": '5433',
     }
 }
 
@@ -92,6 +88,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Internationalization
@@ -115,7 +113,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL= '/media/'
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
