@@ -1,6 +1,7 @@
 FROM  python:3.9-alpine3.13
 LABEL maintainer = "mote21"
 ENV PYTHONUNBUFFERED 1
+
 COPY . /DOG-DOG
 WORKDIR /DOG-DOG/
 EXPOSE 8000

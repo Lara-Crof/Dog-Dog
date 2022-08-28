@@ -8,7 +8,7 @@ SECRET_KEY = 'django-insecure-@j2f_qww_)4#0cf@#jp64ty6+&v3qhyp0w_++a4ihz1kc7&a18
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', '0.0.0.0']
+ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -19,9 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'animals',
-    'findhouse',
-    'users',
+    'animals.apps.AnimalsConfig',
+    'findhouse.apps.FindhouseConfig',
+    'users.apps.UserConfig',
     'sorl.thumbnail',
 ]
 
@@ -65,8 +65,8 @@ DATABASES = {
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "db",  # set in docker-compose.yml
-        "PORT": 5432,
+        "HOST": "localhost", # set in docker-compose.yml
+        "PORT": '5433',
     }
 }
 
@@ -89,7 +89,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'users.CustomUser'
 
 
 # Internationalization

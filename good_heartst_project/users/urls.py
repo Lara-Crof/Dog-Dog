@@ -1,9 +1,12 @@
 from django.urls import path, include
 
-from views import CreateView
+from . import views as vw
 
 app_name = 'users'
 
 urlpatterns = [
-    path('signup/', CreateView.as_view(), name='sign_up'),
+    path('signup/', vw.SignUp.as_view
+         (template_name='users/signup.html'),
+         name='signup'
+         ),
 ]

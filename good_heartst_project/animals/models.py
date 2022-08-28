@@ -1,9 +1,9 @@
 from importlib.resources import contents
 from django.db import models
 from django.urls import reverse
-#from django.contrib.auth.models import User
+#from django.contrib.auth.models import CustomUser
 
-from users.models import User
+from users.models import CustomUser
 
 
 class MainAnimals(models.Model):
@@ -43,7 +43,7 @@ class MainAnimals(models.Model):
         db_index=True, 
         verbose_name="URL")
     author = models.ForeignKey(
-        User, 
+        CustomUser,
         on_delete=models.PROTECT,
         verbose_name='Автор', )
     category = models.ForeignKey('Category', on_delete=models.PROTECT)
